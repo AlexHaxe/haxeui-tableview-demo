@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <meta title="Main" package="" version="1.0.0" company="company" />
+    <app main="Main" path="out" file="Main" />
+    <window width="1024" height="768" unless="mobile" />
+
+    <source path="src" />
+
+    <haxelib name="lime" />
+    <haxelib name="openfl" />
+    <haxelib name="haxeui-core" />
+    <haxelib name="haxeui-openfl" />
+
+    <haxedef name="HXCPP_COMPILE_CACHE=/tmp/hxcpp" if="linux"/>
+    <haxedef name="HXCPP_COMPILE_CACHE=C:\TEMP\hxcpp" if="windows"/>
+    
+    <haxedef name="absolute-path" />
+
+    <assets path="assets/xml" />
+    <assets path="assets/pdf.png" />
+</project>
