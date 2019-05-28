@@ -14,7 +14,8 @@
 
     <haxedef name="HXCPP_COMPILE_CACHE=/tmp/hxcpp" if="linux"/>
     <haxedef name="HXCPP_COMPILE_CACHE=C:\TEMP\hxcpp" if="windows"/>
-    
+    <haxedef name="HXCPP_SAFE_STRINGS" />
+
     <haxedef name="absolute-path" />
 
     <assets path="assets/xml" />
