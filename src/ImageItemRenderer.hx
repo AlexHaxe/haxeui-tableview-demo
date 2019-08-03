@@ -9,7 +9,7 @@ class ImageItemRenderer extends ItemRenderer {
 		height = 32;
 	}
 
-	override private function validateData():Void {
+	override private function validateComponentData():Void {
 		if (image != null) {
 			if (image.resource == _data.value) {
 				return;

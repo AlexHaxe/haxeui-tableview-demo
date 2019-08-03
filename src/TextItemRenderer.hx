@@ -10,7 +10,7 @@ class TextItemRenderer extends ItemRenderer {
 		addComponent(label);
 	}
 
-	override private function validateData():Void {
+	override private function validateComponentData():Void {
 		var label:Label = findComponent(null, Label, true);
 		label.text = _data.value;
 	}

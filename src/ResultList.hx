@@ -4,7 +4,7 @@ class ResultList extends Sprite {
 	private var fullDataSource:Array<ResultListItemData>;
 	private var uiView:Component;
 
-	public static inline var ITEM_COUNT:Int = 500;
+	public static inline var ITEM_COUNT:Int = 50;
 
 	public function new() {
 		super();
@@ -22,20 +22,22 @@ class ResultList extends Sprite {
 		}
 
 		uiView = ComponentMacros.buildComponent("assets/xml/resultTable.xml");
-		addChild(uiView);
 
 		var tableView:TableView = uiView.findComponent("results", TableView, true);
 		addTableColumns(tableView);
+		addChild(uiView);
 
-		if (true) {
-			// fill data source with onEnterFrame
-			fullDataSource = makeDataSource();
-			tableView.dataSource = new ArrayDataSource<ResultListItemData>();
-			addEventListener(Event.ENTER_FRAME, onEnterFrame);
-		} else {
-			// set data source direct without
-			tableView.dataSource = makeDataSourceDirect();
-		}
+		// if (true) {
+		// 	// fill data source with onEnterFrame
+		// 	fullDataSource = makeDataSource();
+		// 	tableView.dataSource = new ArrayDataSource<ResultListItemData>();
+		// 	addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		// } else {
+
+		// set data source direct without
+		tableView.dataSource = makeDataSourceDirect();
+
+		// }
 	}
 
 	private function onEnterFrame(e:Event):Void {
