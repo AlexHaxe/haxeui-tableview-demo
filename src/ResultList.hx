@@ -4,7 +4,7 @@ class ResultList extends Sprite {
 	private var fullDataSource:Array<ResultListItemData>;
 	private var uiView:Component;
 
-	public static inline var ITEM_COUNT:Int = 50;
+	public static inline var ITEM_COUNT:Int = 25;
 
 	public function new() {
 		super();
@@ -35,7 +35,11 @@ class ResultList extends Sprite {
 		// } else {
 
 		// set data source direct without
-		tableView.dataSource = makeDataSourceDirect();
+
+		var dataSource = makeDataSourceDirect();
+		tableView.dataSource = dataSource;
+		// TODO needed because TableView doesn't show data without
+		dataSource.add(makeProdukt(100));
 
 		// }
 	}
@@ -73,46 +77,58 @@ class ResultList extends Sprite {
 
 	private function addTableColumns(tableView:TableView):Void {
 		var header:Header = new Header();
-		header.addClass("headerRow");
 		tableView.addComponent(header);
 
-		addImageColumn(header, tableView, "icon", 50);
-		addImageColumn(header, tableView, "pdf", 50);
-		for (index in 1...10) {
-			addTextColumn(header, tableView, 'field_$index', 'Field $index', 100);
+		var renderer:ItemRenderer = new ItemRenderer();
+		tableView.addComponent(renderer);
+
+		addImageColumn(header, renderer, tableView, "icon", 50);
+		addImageColumn(header, renderer, tableView, "pdf", 50);
+		for (index in 1...5) {
+			addTextColumn(header, renderer, tableView, 'field_$index', 'Field $index', 100);
 		}
 	}
 
-	private function addTextColumn(header:Header, tableView:TableView, colId:String, colTitle:String, colWidth:Float):Void {
+	private function addTextColumn(header:Header, itemRender:ItemRenderer, tableView:TableView, colId:String, colTitle:String, colWidth:Float):Void {
+		var column:Column = new Column();
+		column.text = colTitle;
+		column.id = colId;
+		column.width = colWidth;
+		column.height = 36;
+		column.verticalAlign = VerticalAlign.BOTTOM;
+		header.addComponent(column);
+
 		var label:Label = new Label();
-		label.text = colTitle;
 		label.id = colId;
 		label.width = colWidth;
 		label.height = 36;
-		label.verticalAlign = VerticalAlign.BOTTOM;
 
-		header.addComponent(label);
-
-		var renderer:ItemRenderer = new TextItemRenderer();
-		renderer.width = colWidth;
-		renderer.height = 36;
-		tableView.addComponent(renderer);
+		var itemRender:ItemRenderer = new ItemRenderer();
+		itemRender.addComponent(label);
+		tableView.addComponent(itemRender);
 	}
 
-	private function addImageColumn(header:Header, tableView:TableView, colId:String, colWidth:Float):Void {
-		var label:Label = new Label();
-		label.text = "";
-		label.id = colId;
-		label.width = colWidth;
-		label.height = 36;
-		label.verticalAlign = VerticalAlign.BOTTOM;
-		label.layout = new AbsoluteLayout();
-		header.addComponent(label);
+	private function addImageColumn(header:Header, itemRender:ItemRenderer, tableView:TableView, colId:String, colWidth:Float):Void {
+		var column:Column = new Column();
+		column.text = "";
+		column.id = colId;
+		column.width = colWidth;
+		column.height = 36;
+		column.verticalAlign = VerticalAlign.BOTTOM;
+		column.layout = new AbsoluteLayout();
+		header.addComponent(column);
 
-		var renderer:ItemRenderer = new ImageItemRenderer();
-		renderer.width = colWidth;
-		renderer.height = 36;
-		tableView.addComponent(renderer);
+		var image:Image = new Image();
+		image.id = colId;
+		image.verticalAlign = VerticalAlign.CENTER;
+		image.horizontalAlign = HorizontalAlign.CENTER;
+		image.scaleMode = ScaleMode.FIT_INSIDE;
+		image.width = 32;
+		image.height = 32;
+
+		var itemRender:ItemRenderer = new ItemRenderer();
+		itemRender.addComponent(image);
+		tableView.addComponent(itemRender);
 	}
 
 	private function makeProdukt(count:Int):ResultListItemData {

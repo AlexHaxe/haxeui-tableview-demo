@@ -1,5 +1,7 @@
 package;
 
+import haxe.CallStack;
+
 class Main extends Sprite {
 	public function new() {
 		super();
@@ -10,6 +12,10 @@ class Main extends Sprite {
 			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 		} catch (e:Any) {
 			trace('$e');
+			var items = CallStack.exceptionStack();
+			for (item in items) {
+				trace(item);
+			}
 		}
 	}
 
