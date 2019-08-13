@@ -27,44 +27,8 @@ class ResultList extends Sprite {
 		addTableColumns(tableView);
 		addChild(uiView);
 
-		// if (true) {
-		// 	// fill data source with onEnterFrame
-		// 	fullDataSource = makeDataSource();
-		// 	tableView.dataSource = new ArrayDataSource<ResultListItemData>();
-		// 	addEventListener(Event.ENTER_FRAME, onEnterFrame);
-		// } else {
-
-		// set data source direct without
-
 		var dataSource = makeDataSourceDirect();
 		tableView.dataSource = dataSource;
-		// TODO needed because TableView doesn't show data without
-		dataSource.add(makeProdukt(100));
-
-		// }
-	}
-
-	private function onEnterFrame(e:Event):Void {
-		var tableView:TableView = uiView.findComponent("results", TableView, true);
-		if ((fullDataSource == null) || (fullDataSource.length <= 0)) {
-			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
-			return;
-		}
-		for (index in 0...25) {
-			if (fullDataSource.length <= 0) {
-				break;
-			}
-			var data:ResultListItemData = fullDataSource.shift();
-			tableView.dataSource.add(data);
-		}
-	}
-
-	private function makeDataSource():Array<ResultListItemData> {
-		var dataSource:Array<ResultListItemData> = [];
-		for (index in 0...ITEM_COUNT) {
-			dataSource.push(makeProdukt(index));
-		}
-		return dataSource;
 	}
 
 	private function makeDataSourceDirect():ArrayDataSource<ResultListItemData> {
@@ -79,17 +43,14 @@ class ResultList extends Sprite {
 		var header:Header = new Header();
 		tableView.addComponent(header);
 
-		var renderer:ItemRenderer = new ItemRenderer();
-		tableView.addComponent(renderer);
-
-		addImageColumn(header, renderer, tableView, "icon", 50);
-		addImageColumn(header, renderer, tableView, "pdf", 50);
+		addImageColumn(header, tableView, "icon", 50);
+		addImageColumn(header, tableView, "pdf", 50);
 		for (index in 1...5) {
-			addTextColumn(header, renderer, tableView, 'field_$index', 'Field $index', 100);
+			addTextColumn(header, tableView, 'field_$index', 'Field $index', 100);
 		}
 	}
 
-	private function addTextColumn(header:Header, itemRender:ItemRenderer, tableView:TableView, colId:String, colTitle:String, colWidth:Float):Void {
+	private function addTextColumn(header:Header, tableView:TableView, colId:String, colTitle:String, colWidth:Float):Void {
 		var column:Column = new Column();
 		column.text = colTitle;
 		column.id = colId;
@@ -100,15 +61,15 @@ class ResultList extends Sprite {
 
 		var label:Label = new Label();
 		label.id = colId;
-		label.width = colWidth;
-		label.height = 36;
+		// label.width = colWidth;
+		// label.height = 36;
 
 		var itemRender:ItemRenderer = new ItemRenderer();
 		itemRender.addComponent(label);
 		tableView.addComponent(itemRender);
 	}
 
-	private function addImageColumn(header:Header, itemRender:ItemRenderer, tableView:TableView, colId:String, colWidth:Float):Void {
+	private function addImageColumn(header:Header, tableView:TableView, colId:String, colWidth:Float):Void {
 		var column:Column = new Column();
 		column.text = "";
 		column.id = colId;
