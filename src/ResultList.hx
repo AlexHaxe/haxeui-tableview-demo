@@ -1,5 +1,9 @@
 package;
 
+import openfl.events.Event;
+import haxe.ui.events.MouseEvent;
+import haxe.ui.events.UIEvent;
+
 class ResultList extends Sprite {
 	private var fullDataSource:Array<ResultListItemData>;
 	private var uiView:Component;
@@ -29,6 +33,12 @@ class ResultList extends Sprite {
 
 		var dataSource = makeDataSourceDirect();
 		tableView.dataSource = dataSource;
+		tableView.registerEvent(UIEvent.CHANGE, onClickProduct);
+	}
+
+	private function onClickProduct(event:Dynamic):Void {
+		var tableView:TableView = uiView.findComponent("results", TableView, true);
+		trace(tableView.selectedItem);
 	}
 
 	private function makeDataSourceDirect():ArrayDataSource<ResultListItemData> {

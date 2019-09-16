@@ -1,12 +1,16 @@
 package;
 
 import haxe.CallStack;
+import haxe.ui.themes.ThemeManager;
 
 class Main extends Sprite {
 	public function new() {
 		super();
 		try {
 			Toolkit.init();
+			ThemeManager.instance.addStyleResource("MyStyle", "assets/style.css");
+			ThemeManager.instance.applyTheme("MyStyle");
+
 			addChild(new ResultList());
 
 			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);

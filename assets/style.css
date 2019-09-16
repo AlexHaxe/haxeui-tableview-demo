@@ -1,0 +1,19 @@
+.tableview {
+    border-width: 1px;
+    border-color: #ee3124;
+}
+
+.headerRow .label,
+.headerRow .column {
+    font-size: 12px;
+    background: #c8c8c8 #b0b0b0 vertical;
+    padding: 5px;
+    height: 36px;
+    text-align: center;
+    border-right-width: 1px;
+    border-right-color: #f0f0f0;
+    border-top-width: 1px;
+    border-top-color: #f0f0f0;
+    border-bottom-width: 1px;
+    border-bottom-color: #f0f0f0;
+}
