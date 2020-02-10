@@ -1,0 +1,24 @@
+{
+    "name": "haxeui-tabelview-demo",
+    "version": "1.0.0",
+    "description": "a small TableView demo using haxeui-openfl",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AlexHaxe/haxeui-tableview-demo"
+    },
+    "keywords": [
+        "haxe",
+        "haxeui",
+        "tableview"
+    ],
+    "author": {
+        "name": "Alexander Blum",
+        "email": "Alexander.Blum@gmail.com"
+    },
+    "contributors": [],
+    "devDependencies": {
+        "lix": "^15.8.5"
+    },
+    "bugs": "https://github.com/AlexHaxe/haxeui-tableview-demo/issues",
+    "license": "MIT"
+}
