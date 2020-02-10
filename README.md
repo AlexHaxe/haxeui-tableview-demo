@@ -1,5 +1,5 @@
 # How to compile
 
-- install lix
-- run `lix download`
-- run `lime test neko`, `lime test html5` or `lime test linux` (C++ compilation might not work with Haxe 4)
+- run `npm i`
+- run `npx lix download`
+- run `npx lime test neko`, `npx lime test html5` or `npx lime test linux`
